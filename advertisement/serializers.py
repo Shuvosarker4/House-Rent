@@ -7,13 +7,13 @@ class AdvertisementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Advertisement
         fields = ['id', 'user', 'title', 'description', 'category', 'price', 'location', 'is_approved', 'created_at']
-        read_only_fields =['is_approved']
+        read_only_fields =['is_approved','user']
 
 class AdvertisementStaffSerializer(serializers.ModelSerializer):
     class Meta:
         model = Advertisement
-        fields = ['id', 'user', 'title', 'description', 'category', 'price', 'location', 'is_approved', 'created_at']
-
+        fields = ['id', 'user', 'title', 'description', 'category', 'price', 'location', 'is_approved']
+        read_only_fields =['user']
 
 class SimpleUserSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField(method_name='get_current_user_name')
