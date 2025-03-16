@@ -33,4 +33,6 @@ class Review(models.Model):
     def __str__(self):
         return f"Review by {self.user.first_name}"
     
-    
+class SavingFavorites(models.Model):
+    advertisement = models.ForeignKey(Advertisement,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)

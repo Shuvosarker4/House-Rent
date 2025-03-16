@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from advertisement.models import Advertisement
-from advertisement.models import Review
+from advertisement.models import Review,SavingFavorites
 from django.contrib.auth import get_user_model
 
 class AdvertisementSerializer(serializers.ModelSerializer):
@@ -34,3 +34,14 @@ class ReviewSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         advertisement_id = self.context['advertisement_id']
         return Review.objects.create(advertisement_id=advertisement_id,**validated_data)
+    
+class SavingFavoritesSerializer(serializers.ModelSerializer):
+    user = SimpleUserSerializer(read_only=True)
+    class Meta:
+        model = SavingFavorites
+        fields = ['id','user','advertisement']
+        read_only_fields = ['user','advertisement']
+    
+    def create(self, validated_data):
+        advertisement_id = self.context['advertisement_id']
+        return SavingFavorites.objects.create(advertisement_id=advertisement_id,**validated_data)
