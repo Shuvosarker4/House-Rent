@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import User
+from django.core.validators import MinValueValidator,MaxValueValidator
 
 class Advertisement(models.Model):
     CATEGORY_CHOICES = [
@@ -20,3 +21,16 @@ class Advertisement(models.Model):
 
     def __str__(self):
         return self.title
+
+class Review(models.Model):
+    advertisement = models.ForeignKey(Advertisement,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    ratings = models.PositiveIntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
+    comment = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Review by {self.user.first_name}"
+    
+    
