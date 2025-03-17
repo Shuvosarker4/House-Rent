@@ -8,11 +8,9 @@ from django_filters.rest_framework import DjangoFilterBackend
 # Create your views here.
 
 class AdvertisementViewSet(ModelViewSet):
-    # queryset = Advertisement.objects.filter(is_approved=True)
-    # serializer_class = AdvertisementSerializer
     permission_classes = [IsReviewAuthorOrReadOnly,IsAuthenticatedOrReadOnly]
     filter_backends =[DjangoFilterBackend]
-    filterset_fields = ['category']
+    # filterset_fields = ['category','is_approved']
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -26,6 +24,12 @@ class AdvertisementViewSet(ModelViewSet):
         if self.request.user.is_staff:
             return AdvertisementStaffSerializer
         return AdvertisementSerializer
+    
+    @property
+    def filterset_fields(self):
+        if self.request.user.is_staff:
+            return ['category', 'is_approved']
+        return ['category']
 
 class ReviewViewSet(ModelViewSet):
     serializer_class = ReviewSerializer
