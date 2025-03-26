@@ -16,6 +16,10 @@ SECRET_KEY = 'django-insecure-s_(o05ln+rk7fq@zvn&7j-4s_$muxsbn8bvptnduwk%+ei38=v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+CORS_ALLOWED_ORIGINS = [
+    "https://house-rent-pied-seven.vercel.app/api/v1",
+    "http://127.0.0.1:8000"
+]
 ALLOWED_HOSTS = ['.vercel.app','127.0.0.1']
 AUTH_USER_MODEL = 'users.User'
 
@@ -32,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'drf_yasg',
     'rest_framework',
+    "corsheaders",
     'django_filters',
     'djoser',
     'api',
@@ -41,6 +46,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+     "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
