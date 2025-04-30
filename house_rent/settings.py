@@ -17,7 +17,7 @@ SECRET_KEY = 'django-insecure-s_(o05ln+rk7fq@zvn&7j-4s_$muxsbn8bvptnduwk%+ei38=v
 DEBUG = False
 
 CORS_ALLOWED_ORIGINS = [
-    "https://house-rent-pied-seven.vercel.app/api/v1",
+    "https://house-rent-pied-seven.vercel.app",
     "http://127.0.0.1:8000",
     "http://localhost:5173",
     "https://house-rent-client-tau.vercel.app",
