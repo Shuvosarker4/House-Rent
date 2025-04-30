@@ -20,6 +20,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://house-rent-pied-seven.vercel.app/api/v1",
     "http://127.0.0.1:8000",
     "http://localhost:5173",
+    "https://house-rent-client-tau.vercel.app",
 ]
 ALLOWED_HOSTS = ['.vercel.app','127.0.0.1']
 AUTH_USER_MODEL = 'users.User'
