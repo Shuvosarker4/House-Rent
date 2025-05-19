@@ -1,6 +1,6 @@
 from django.urls import path,include
 from rest_framework_nested import routers
-from advertisement.views import AdvertisementViewSet,ReviewViewSet,SavingFavoritesViewSet
+from advertisement.views import AdvertisementViewSet,ReviewViewSet,SavingFavoritesViewSet,initiate_payment,payment_success
 from rentRequest.views import RentRequestViewSet
 router = routers.DefaultRouter()
 router.register('advertisements',AdvertisementViewSet,basename='advertisement-list')
@@ -16,4 +16,6 @@ urlpatterns = [
     path('',include(ad_router.urls)),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
+    path("payment/initiate/", initiate_payment, name="initiate-payment"),
+     path("payment/success/", payment_success, name="payment-success"),
 ]
