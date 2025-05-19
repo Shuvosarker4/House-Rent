@@ -9,7 +9,7 @@ from sslcommerz_lib import SSLCOMMERZ
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 # Create your views here.
 
 class AdvertisementViewSet(ModelViewSet):
@@ -77,7 +77,7 @@ def initiate_payment(request):
     post_body['total_amount'] = amount
     post_body['currency'] = "BDT"
     post_body['tran_id'] = "12345"
-    post_body['success_url'] = "http://localhost:5173/thank-you"
+    post_body['success_url'] = "http://localhost:5173/dashboard/payment/success"
     post_body['fail_url'] = "your fail url"
     post_body['cancel_url'] = "your cancel url"
     post_body['emi_option'] = 0
@@ -103,4 +103,4 @@ def initiate_payment(request):
 
 @api_view(['POST'])
 def payment_success(request):
-    return HttpResponseRedirect("http://localhost:5173")
+    return redirect("http://localhost:5173/dashboard/payment/success")
