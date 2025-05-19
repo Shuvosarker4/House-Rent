@@ -77,7 +77,7 @@ def initiate_payment(request):
     post_body['total_amount'] = amount
     post_body['currency'] = "BDT"
     post_body['tran_id'] = "12345"
-    post_body['success_url'] = "https://house-rent-client-tau.vercel.app/dashboard/payment/success"
+    post_body['success_url'] = "https://house-rent-pied-seven.vercel.app/api/v1/payment/success"
     post_body['fail_url'] = "your fail url"
     post_body['cancel_url'] = "your cancel url"
     post_body['emi_option'] = 0
@@ -104,4 +104,3 @@ def initiate_payment(request):
 @api_view(['POST'])
 def payment_success(request):
     return redirect("https://house-rent-client-tau.vercel.app/dashboard/payment/success")
-
