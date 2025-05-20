@@ -10,6 +10,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import redirect
+from rest_framework.response import HttpResponseRedirect
 # Create your views here.
 
 class AdvertisementViewSet(ModelViewSet):
@@ -78,8 +79,8 @@ def initiate_payment(request):
     post_body['currency'] = "BDT"
     post_body['tran_id'] = "12345"
     post_body['success_url'] = "https://house-rent-pied-seven.vercel.app/api/v1/payment/success/"
-    post_body['fail_url'] = "your fail url"
-    post_body['cancel_url'] = "your cancel url"
+    post_body['fail_url'] = "https://house-rent-pied-seven.vercel.app/api/v1/payment/fail/"
+    post_body['cancel_url'] = "https://house-rent-pied-seven.vercel.app/api/v1/payment/cancel/"
     post_body['emi_option'] = 0
     post_body['cus_name'] = f"{user.first_name}"
     post_body['cus_email'] = user.email
@@ -104,3 +105,13 @@ def initiate_payment(request):
 @api_view(['POST'])
 def payment_success(request):
     return redirect("https://house-rent-client-tau.vercel.app/payment/success/")
+
+
+@api_view(['POST'])
+def payment_cancel(request):
+    return redirect("https://house-rent-client-tau.vercel.app/dashboard")
+
+
+@api_view(['POST'])
+def payment_fail(request):
+    return redirect("https://house-rent-client-tau.vercel.app/dashboard")
