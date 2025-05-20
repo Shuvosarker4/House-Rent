@@ -10,7 +10,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import redirect
-from rest_framework.response import HttpResponseRedirect
+
 # Create your views here.
 
 class AdvertisementViewSet(ModelViewSet):
