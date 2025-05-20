@@ -103,4 +103,4 @@ def initiate_payment(request):
 
 @api_view(['POST'])
 def payment_success(request):
-    return redirect("https://house-rent-client-tau.vercel.app/dashboard/payment/success")
+    return redirect("https://house-rent-client-tau.vercel.app/payment/success")
